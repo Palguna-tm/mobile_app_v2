@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <div id="messages"></div>
+
+    <!-- Input box to enter message -->
+    <input type="text" id="messageInput" placeholder="Enter your message">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        // Create a new WebSocket instance and connect to the server
+        const socket = new WebSocket('ws://122.166.166.22:3000');
+
+        // Event listener for when the WebSocket connection is opened
+        socket.onopen = function(event) {
+            console.log('WebSocket connection opened');
+        };
+
+        // Event listener for when a message is received from the WebSocket server
+        socket.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+            console.log('Message received from server:', message);
+            // Display the received data on the webpage
+            displayMessage(message);
+        };
+
+        // Event listener for when the WebSocket connection is closed
+        socket.onclose = function(event) {
+            console.log('WebSocket connection closed');
+        };
+
+        // Event listener for any errors that occur with the WebSocket connection
+        socket.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+
+        // Function to display the received message on the webpage
+        function displayMessage(message) {
+            const messagesDiv = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `Device ID: ${message.device_id}, Consumption: ${message.consumption}`;
+            messagesDiv.appendChild(messageElement);
+        }
+
+        // Function to send a message to the server
+        function sendMessage() {
+            // Get the input value
+            const input = document.getElementById('messageInput');
+            const message = input.value;
+
+            // Send the message to the server
+            socket.send(JSON.stringify({ message }));
+            
+            // Clear the input box
+            input.value = '';
+        }
+    </script>
+</body>
+</html>

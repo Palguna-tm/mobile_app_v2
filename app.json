@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "ZenGap",
+    "slug": "Project",
+    "version": "1.0.0011",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
+    "permissions": ["INTERNET"],
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true,
+            "cleartext": true 
+          }
+          
+        }
+      ]
+    ],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "usesCleartextTraffic": true, 
+      "permissions": ["INTERNET"],
+      "config": {
+        "network": {
+          "cleartext": true
+        }
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.palgunatm.Project"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f9b36c30-7842-44a4-9cd0-66eff1cb4d28"
+      }
+    },
+    "owner": "palguna-tm"
+  }
+}
